@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+	<link th:href="@{/main.css}" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Please Login</title>
+</head>
+<body>
+<a th:href="@{/}"><img th:src="@{../images/canada.png}" class="logo"/></a>
+<div class="topnav">
+  <a href="/"><i class="fa fa-fw fa-home"></i>Home</a>
+  <a href="/add"><i class="fa fa-fw fa-plus"></i>Add</a>
+  <a href="/search"><i class="fa fa-fw fa-search"></i>Search</a>
+  <a href="/sportsList"><i class="fa fa-fw fa-futbol-o"></i>All Sports</a>
+  <a href="/regionList"><i class="fa fa-fw fa-map"></i>All Regions</a>
+  <a href="/inventionList"><i class="fa fa-fw fa-lightbulb-o"></i>All Inventions</a>
+  <a href="/languageList"><i class="fa fa-fw fa-language"></i>All Languages</a>
+  <a href="/foodList"><i class="fa fa-fw fa-cutlery"></i>All Foods</a>
+  <a class="active" href="/loginPage" th:if="${session.role == null}"><i class="fa fa-fw fa-user"></i>Login</a>
+  <a href="/endSession" th:if="${session.role == 'admin'}"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+</div>
+<div class="signup-form"  th:if="${session.role == null}">
+<form method="POST" action="/login" th:object="${user}">
+	<h2>Login:</h2>
+	<div class="form-group">
+		<div class="row">
+			<div class="col">UserName:</div>
+			<div class="col"><input type="text" class="form-control" name="userName" th:field="*{userName}"/></div>
+		</div>
+			<div class="row">
+			<div class="col">Password:</div>
+			<div class="col"><input type="text" class="form-control" name="password" th:field="*{password}"/></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-danger btn-lg btn-block" type="submit">Login</button>
+	</div>
+</form>
+</div>
+</body>
+</html>

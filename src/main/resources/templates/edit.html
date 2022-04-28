@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+	<link th:href="@{/main.css}" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Edit Information</title>
+</head>
+<body>
+<a th:href="@{/}"><img th:src="@{../images/canada.png}" class="logo"/></a>
+<div class="topnav">
+  <a href="/"><i class="fa fa-fw fa-home"></i>Home</a>
+  <a href="/add"><i class="fa fa-fw fa-plus"></i>Add</a>
+  <a href="/search"><i class="fa fa-fw fa-search"></i>Search</a>
+  <a href="/sportsList"><i class="fa fa-fw fa-futbol-o"></i>All Sports</a>
+  <a href="/regionList"><i class="fa fa-fw fa-map"></i>All Regions</a>
+  <a href="/inventionList"><i class="fa fa-fw fa-lightbulb-o"></i>All Inventions</a>
+  <a href="/languageList"><i class="fa fa-fw fa-language"></i>All Languages</a>
+  <a href="/foodList"><i class="fa fa-fw fa-cutlery"></i>All Foods</a>
+  <a href="/loginPage" th:if="${session.role == null}"><i class="fa fa-fw fa-user"></i>Login</a>
+  <a href="/endSession" th:if="${session.role == 'admin'}"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+</div>
+<div class="signup-form" th:if="${region != null}">
+<form method="POST" action="/updateRegion" th:object="${region}">
+<h2>Edit Region</h2>
+	<div class="form-group">
+		<div class="row">
+			<div class="col"><input type="hidden" class="form-control" name="id" th:field="*{id}" th:value="${id}"/></div>
+		</div>
+		<div class="row">
+			<div class="col"><input type="hidden" class="form-control" name="country" value="1"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Region Name:</div>
+			<div class="col"><input type="text" class="form-control" name="regionName" th:field="*{regionName}" th:text="${regionName}" th:value="${regionName}" readonly /></div>
+		</div>
+		<div class="row">
+			<div class="col">Population:</div>
+			<div class="col"><input type="number" step="1" class="form-control" name="population" th:field="*{population}" th:value="${population}"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Region Type:</div>
+			<div class="col"><input type="text" class="form-control" name="regionType" th:field="*{regionType}" th:text="${regionType}" th:value="${regionType}" readonly /></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-danger btn-lg btn-block" type="submit">Update Now</button>
+	</div>
+</form>
+</div>
+<div class="signup-form" th:if="${invention != null}">
+<form method="POST" action="/updateInvention" th:object="${invention}">
+<h2>Edit Invention</h2>
+	<div class="form-group">
+		<div class="row">
+			<div class="col"><input type="hidden" class="form-control" name="id" th:field="*{id}" th:value="${id}"/></div>
+		</div>
+		<div class="row">
+			<div class="col"><input type="hidden" class="form-control" name="country" value="1"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Invention Name:</div>
+			<div class="col"><input type="text" class="form-control" name="inventionName" th:field="*{inventionName}" th:value="${inventionName}"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Inventor:</div>
+			<div class="col"><input type="text" class="form-control" name="inventor" th:field="*{inventor}" th:value="${inventor}"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Invented Date Time:</div>
+			<div class="col"><input type="datetime-local" class="form-control" name="inventDateTime" th:field="*{inventDateTime}" th:value="${inventDateTime}"/></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-danger btn-lg btn-block" type="submit">Update Now</button>
+	</div>
+</form>
+</div>
+<div class="signup-form" th:if="${sports != null}">
+<form method="POST" action="/updateSports" th:object="${sports}">
+<h2>Edit Sports</h2>
+	<div class="form-group">
+		<div class="row">
+			<div class="col"><input type="hidden" class="form-control" name="id" th:field="*{id}" th:value="${id}"/></div>
+		</div>
+		<div class="row">
+			<div class="col"><input type="hidden" class="form-control" name="country" value="1"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Sports Name:</div>
+			<div class="col"><input type="text" class="form-control" name="sportsName" th:field="*{sportsName}" th:value="${inventionName}"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Player Number:</div>
+			<div class="col"><input type="number" step="1" class="form-control" name="maxPlayerNum" th:field="*{maxPlayerNum}" th:value="${maxPlayerNum}"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Outdoor?</div>
+			<div class="col"><input type="checkbox" class="form-control" name="outdoor" th:field="*{outdoor}" th:value="${outdoor}"/></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-danger btn-lg btn-block" type="submit">Update Now</button>
+	</div>
+</form>
+</div>
+<div class="signup-form" th:if="${language != null}">
+<form method="POST" action="/updateLanguage" th:object="${language}">
+<h2>Edit Language</h2>
+	<div class="form-group">
+		<div class="row">
+			<div class="col"><input type="hidden" class="form-control" name="id" th:field="*{id}" th:value="${id}"/></div>
+		</div>
+		<div class="row">
+			<div class="col"><input type="hidden" class="form-control" name="country" value="1"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Language Name:</div>
+			<div class="col"><input type="text" class="form-control" name="languageName" th:field="*{languageName}" th:value="${languageName}"/></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-danger btn-lg btn-block" type="submit">Update Now</button>
+	</div>
+</form>
+</div>
+<div class="signup-form" th:if="${food != null}">
+<form method="POST" action="/updateFood" th:object="${food}">
+<h2>Edit Food</h2>
+	<div class="form-group">
+		<div class="row">
+			<div class="col"><input type="hidden" class="form-control" name="id" th:field="*{id}" th:value="${id}"/></div>
+		</div>
+		<div class="row">
+			<div class="col"><input type="hidden" class="form-control" name="country" value="1"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Food Name:</div>
+			<div class="col"><input type="text" class="form-control" name="foodName" th:field="*{foodName}" th:value="${foodName}"/></div>
+		</div>
+		<div class="row">
+			<div class="col">Food Type:</div>
+			<div class="col">
+				<select th:field="*{foodType}">
+					<option th:each="f:${foodTypes}" th:value="${f}" th:text="${f}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">Origin:</div>
+			<div class="col">
+				<select name="regionName">
+					<option th:each="r:${regionList}" th:text="${r.regionName}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">Recipe:</div>
+			<div class="col"><textarea rows=5 class="form-control" name="recipeLinks" th:field="*{recipeLinks}" th:value="${recipeLinks}"/></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-danger btn-lg btn-block" type="submit">Update Now</button>
+	</div>
+</form>
+</div>
+</body>
+</html>
